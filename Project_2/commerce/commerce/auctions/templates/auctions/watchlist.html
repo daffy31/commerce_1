@@ -1,0 +1,43 @@
+{% extends "auctions/layout.html" %}
+
+
+{% block body %}
+<style>
+    .gallery {
+        float:left;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 5px;
+        width:25%
+    }
+    .gallery img {
+        width: 100%;
+        max-width: 200px;
+        height: 200px;
+        object-fit: scale-down;
+        border-radius: 10px;
+      }
+      .gallery::after {
+        content: "";
+        width: 350px;   
+                  
+      }
+
+</style>
+
+    {% for item in itemsInWatchlist%}
+    <h2>My Watchlist</h2>
+    <div class="gallery">
+        <h2>{{ item.itemTitle }}</h2>
+        <!-- to id edw einai i metavliti poy exoume valei sto urls.pyS -->
+        <a href="{% url 'itemview' id=item.id %}"><img src="{{item.itemImage}}"></a>
+    </div>
+    {%endfor%}
+    
+    {% endblock %}
